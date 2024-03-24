@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Sitio Web</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    
+</head>
+
+<body>
+    <header class='d-flex justify-content-between align-items-center'>
+        <nav>
+            <img src="{% static 'pug.svg' %}" alt="Pug">
+        </nav>
+        <nav>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="/">Inicio</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="posts/">Crear un post</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <nav>
+            <ul class="list-unstyled">
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="">Perfil</a>
+                </li>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+                <li>
+                    <a class="nav-link" href="logout/">Cerrrar sesion</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="login/">Iniciar Sesion</a>
+                </li>
+                <li>
+                    <a href="register/">Registrarte</a>
+                </li>
+            {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="sidebar">
+                    <ul class='list-unstyled'>
+                        <li>
+                            <a href="/">
+                                <i>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                                    </svg>
+                                </i>Home
+                            </a>
+                        </li>
+                        <!-- Agrega otros elementos del menú lateral aquí -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-7">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% block content %}
+                    {% endblock %}
+                
+            </div>
+            <div class="col-2">
+                <aside>
+                    <div class="user-info">
+                        <img src="" alt="test">
+                        <h2>asd</h2>
+                        <span>asdasd</span>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

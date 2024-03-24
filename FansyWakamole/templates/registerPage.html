@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Registrarte</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="Nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required>
+                                </div>
+                                <label for="username">Usuario:</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese su usuario" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Contraseña:</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirmar Contraseña:</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Ingrese su contraseña" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Registrarte</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
